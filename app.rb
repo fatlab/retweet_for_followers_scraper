@@ -30,7 +30,7 @@ n = 0
   begin
     recent = Tweet.where('LOWER(query) = ?', q.downcase).order('tweet_id desc').first# rescue nil
     puts "since: #{recent && recent.tweet_id}"
-    Twitter.search(q, :since_id => (recent && recent.tweet_id), :result_type => 'recent', :rpp => 100).results.map do |status|
+    Twitter.search(q, :since_id => (recent && recent.tweet_id), :result_type => 'recent', :count => 100).results.map do |status|
       _debug("@#{status.from_user}: #{status.text}", 3)
       tweet = status[:text]
       status.urls.each{|u| tweet.gsub!(u.url, u.expanded_url)}
