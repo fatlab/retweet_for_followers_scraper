@@ -35,8 +35,8 @@ n = 0
       tweet = status[:text]
       status.urls.each{|u| tweet.gsub!(u.url, u.expanded_url)}
       t = Tweet.create(:query => q.downcase, :tweet_id => status.id, :tweet => tweet, :tweet_created_on => status.created_at, :user_id => status.user.id, :name => status.user.name, :screen_name => status.user.screen_name, :profile_image_url => status.user.profile_image_url)
-      puts t.inspect
-      puts t.errors.inspect
+      # puts t.inspect
+      # puts t.errors.inspect
       n += 1
     end
   rescue => err
